@@ -14,7 +14,7 @@ class GraphQLController extends Controller {
         // will be a schema name that has to be built
 
         if (is_lumen() && $request->request->count() > 1) {
-            $schema = implode('/', $request->request->all());
+            $schema = $request->request->input('operationName');
         }
         elseif (!is_lumen() && $request->route()->parameters && count($request->route()->parameters) > 1) {
             $schema = implode('/', $request->route()->parameters);
